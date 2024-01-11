@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/website.css" rel="stylesheet">
 
 </head>
 
@@ -78,7 +79,6 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -91,13 +91,6 @@
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
             </div>
 
         </ul>
@@ -217,6 +210,37 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Timesheets</h1>
 
+                <!-- Timer Section -->
+                <!-- Task Entry Section -->
+                <div>
+                    <label for="taskDescription">Task:</label>
+                    <input type="text" id="taskDescription">
+                    
+
+                    <button id="startTimer">Start Timer</button>
+                    <span id="timerDisplay">00:00:00</span>
+                    <button id="stopTimer">Stop Timer</button>
+                    <button id="recordTask">Record Task</button>
+                </div>
+
+                <!-- Timesheet Display Section -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Task/Job</th>
+                            <th>Time From</th>
+                            <th>Time To</th>
+                            <th>Status</th>
+                            <th>Hours</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timesheetBody">
+                        <!-- Timesheet entries will be displayed here -->
+                    </tbody>
+                </table>
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -227,7 +251,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Workplace planner 2024</span>
                     </div>
                 </div>
             </footer>
@@ -273,6 +297,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/website.js"></script>
 
 </body>
 

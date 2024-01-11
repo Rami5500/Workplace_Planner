@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/website.css" rel="stylesheet">
 
 </head>
 
@@ -91,13 +92,6 @@
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
             </div>
 
         </ul>
@@ -217,6 +211,34 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Task Management</h1>
 
+                    <!-- Kanban Board -->
+                    <div class="kanban-container">
+                        <div class="kanban-column" id="todo-column">
+                            <div class="kanban-header">To-Do</div>
+                            <div class="kanban-body" id="todo-body" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <!-- Tasks in To-Do list will be added here -->
+                            </div>
+                        </div>
+                        <div class="kanban-column" id="doing-column">
+                            <div class="kanban-header">Doing</div>
+                            <div class="kanban-body" id="doing-body" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <!-- Tasks in Doing list will be added here -->
+                            </div>
+                        </div>
+                        <div class="kanban-column" id="done-column">
+                            <div class="kanban-header">Done</div>
+                            <div class="kanban-body" id="done-body" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <!-- Tasks in Done list will be added here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Input Form -->
+                    <div class="task-form">
+                        <input type="text" id="taskInput" placeholder="Add a new task...">
+                        <button onclick="addTask()">Add Task</button>
+                    </div>
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -227,7 +249,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Workplace planner 2024</span>
                     </div>
                 </div>
             </footer>
@@ -273,6 +295,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/website.js"></script>
+
 
 </body>
 
