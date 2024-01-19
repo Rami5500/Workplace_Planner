@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+?>
+
 <head>
 
     <meta charset="utf-8">
@@ -10,7 +14,7 @@
     <meta name="author" content="Rami Hassan">
 
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Workplace Planner - Calendar</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,6 +24,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/website.css" rel="stylesheet">
 
 </head>
 
@@ -32,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -43,8 +48,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="dashboard.html">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,8 +57,8 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+            <li class="nav-item active">
+                <a class="nav-link" href="calendar.php" aria-expanded="true">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Calendar</span></a>
             </li>
@@ -62,7 +67,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="timesheets.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Timesheets</span></a>
             </li>
@@ -71,7 +76,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="task_management.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Task Management</span></a>
             </li>
@@ -81,7 +86,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Logout</span></a>
             </li>
@@ -94,10 +99,9 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            
-
         </ul>
         <!-- End of Sidebar -->
+        
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -175,7 +179,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['first_name']; ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -211,26 +215,112 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Calendar</h1>
 
                 </div>
                 <!-- /.container-fluid -->
 
+                <!-- https://www.geeksforgeeks.org/how-to-create-a-dynamic-calendar-in-html-css-javascript/ -->
+
+                <div class="wrapper">
+                    <div class="centered-content">
+                        <div class="calendar-header">
+                            <h3 id="monthAndYear"></h3>
+                            <div class="button-container-calendar">
+                                <button id="previous" onclick="previous()">‹</button>
+                                <button id="next" onclick="next()">›</button>
+                            </div>
+                        </div>
+                        <div class="container-calendar" id="Center">
+                            
+                            <table class="table-calendar" id="calendar" data-lang="en">
+                                <thead id="thead-month"></thead>
+                                <!-- Table body for displaying the calendar -->
+                                <tbody id="calendar-body"></tbody>
+                            </table>
+                            
+                        </div>
+                        <div class="footer-container-calendar">
+                            <label for="month">Jump To: </label>
+                            <!-- Dropdowns to select a specific month and year -->
+                            <select id="month" onchange="jump()">
+                                <option value=0>Jan</option>
+                                <option value=1>Feb</option>
+                                <option value=2>Mar</option>
+                                <option value=3>Apr</option>
+                                <option value=4>May</option>
+                                <option value=5>Jun</option>
+                                <option value=6>Jul</option>
+                                <option value=7>Aug</option>
+                                <option value=8>Sep</option>
+                                <option value=9>Oct</option>
+                                <option value=10>Nov</option>
+                                <option value=11>Dec</option>
+                            </select>
+                            <!-- Dropdown to select a specific year -->
+                            <select id="year" onchange="jump()"></select>
+                            <button id="openAddEventPopup" onclick="openAddEventPopup()">Add Event</button>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- Add Event Modal -->
+                <div id="addEventModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeAddEventPopup()">&times;</span>
+                            <h1>Dynamic Calendar</h1>
+                            <div id="event-section">
+                                <h3>Add Event</h3>
+                                <input type="date" id="eventDate">
+                                <input type="text"
+                                    id="eventTitle"
+                                    placeholder="Event Title">
+                                <input type="text"
+                                    id="eventDescription"
+                                    placeholder="Event Description">
+                                <button id="addEvent" onclick="addEvent()">
+                                    Add
+                                </button>
+                            </div>
+                            <div id="reminder-section">
+                                <h3>Reminders</h3>
+                                <!-- List to display reminders -->
+                                <ul id="reminderList">
+                                    <li data-event-id="1">
+                                        <strong>Event Title</strong>
+                                        - Event Description on Event Date
+                                        <button class="delete-event"
+                                            onclick="deleteEvent(1)">
+                                            Delete
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Workplace planner 2024</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Workplace planner 2024</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+            
+
 
         </div>
         <!-- End of Content Wrapper -->
+
+        
 
     </div>
     <!-- End of Page Wrapper -->
@@ -269,6 +359,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/website.js"></script>
+
 
 </body>
 

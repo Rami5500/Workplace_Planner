@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+?>
+
 <head>
 
     <meta charset="utf-8">
@@ -31,7 +35,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -43,7 +47,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard.html" aria-expanded="true">
+                <a class="nav-link" href="dashboard.php" aria-expanded="true">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +56,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="calendar.html">
+                <a class="nav-link" href="calendar.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Calendar</span></a>
             </li>
@@ -61,7 +65,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="timesheets.html">
+                <a class="nav-link" href="timesheets.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Timesheets</span></a>
             </li>
@@ -70,7 +74,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="task_management.html">
+                <a class="nav-link" href="task_management.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Task Management</span></a>
             </li>
@@ -204,11 +208,16 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
+                        <!--
+                        https://www.geeksforgeeks.org/how-to-display-logged-in-user-information-in-php/
+                        Used the above link to display the users name when they are logged in
+                        -->
+
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Name</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['first_name']; ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>

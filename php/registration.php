@@ -5,6 +5,8 @@
 // Include the database connection file
 include 'db_connection.php';
 
+session_start();
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
@@ -47,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     
     // Redirect to login page or dashboard after successful registration
-    header("Location: login.html");
+    header("Location: /Workplace_Planner/login.html");
     exit;
 }
 ?>

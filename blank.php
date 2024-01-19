@@ -10,7 +10,7 @@
     <meta name="author" content="Rami Hassan">
 
 
-    <title>Workplace Planner - Task Management</title>
+    <title>SB Admin 2 - Blank</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,7 +20,6 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="css/website.css" rel="stylesheet">
 
 </head>
 
@@ -33,7 +32,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -44,8 +43,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="dashboard.html">
+            <li class="nav-item active">
+                <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -54,7 +53,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="calendar.html">
+                <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Calendar</span></a>
             </li>
@@ -63,7 +62,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="timesheets.html">
+                <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Timesheets</span></a>
             </li>
@@ -71,8 +70,8 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <li class="nav-item active">
-                <a class="nav-link" href="task_management.html" aria-expanded="true">
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Task Management</span></a>
             </li>
@@ -82,7 +81,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Logout</span></a>
             </li>
@@ -94,6 +93,8 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+
+            
 
         </ul>
         <!-- End of Sidebar -->
@@ -174,7 +175,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Name</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -210,35 +211,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Task Management</h1>
-
-                    <!-- Kanban Board -->
-                    <div class="kanban-container">
-                        <div class="kanban-column" id="todo-column">
-                            <div class="kanban-header">To-Do</div>
-                            <div class="kanban-body" id="todo-body" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                <!-- Tasks in To-Do list will be added here -->
-                            </div>
-                        </div>
-                        <div class="kanban-column" id="doing-column">
-                            <div class="kanban-header">Doing</div>
-                            <div class="kanban-body" id="doing-body" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                <!-- Tasks in Doing list will be added here -->
-                            </div>
-                        </div>
-                        <div class="kanban-column" id="done-column">
-                            <div class="kanban-header">Done</div>
-                            <div class="kanban-body" id="done-body" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                <!-- Tasks in Done list will be added here -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Task Input Form -->
-                    <div class="task-form">
-                        <input type="text" id="taskInput" placeholder="Add a new task...">
-                        <button onclick="addTask()">Add Task</button>
-                    </div>
+                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -296,8 +269,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="js/website.js"></script>
-
 
 </body>
 
