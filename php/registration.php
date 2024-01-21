@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     
     // Redirect to login page or dashboard after successful registration
-    header("Location: /Workplace_Planner/login.html");
+    header("Location: /Workplace_Planner/user_login.php");
     exit;
 }
 ?>

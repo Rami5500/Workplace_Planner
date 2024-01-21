@@ -23,8 +23,9 @@ session_start();
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/website.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    
 
 </head>
 
@@ -83,8 +84,7 @@ session_start();
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Charts -->
+            
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-fw fa-chart-area"></i>

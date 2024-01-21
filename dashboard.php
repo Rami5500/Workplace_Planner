@@ -81,8 +81,7 @@ session_start();
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Charts -->
+            
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -487,7 +486,7 @@ session_start();
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="user_login.php">Logout</a>
                 </div>
             </div>
         </div>
