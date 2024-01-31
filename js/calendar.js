@@ -1,133 +1,3 @@
-//Task Management functionality
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-function drag(event) {
-    event.dataTransfer.setData("text", event.target.id);
-}
-
-function drop(event) {
-    event.preventDefault();
-    var data = event.dataTransfer.getData("text");
-    var draggedElement = document.getElementById(data);
-    var dropTarget = event.target;
-
-    // Ensures the drop is on a valid target
-    if (dropTarget.classList.contains("kanban-body")) {
-        dropTarget.appendChild(draggedElement);
-    }
-}
-
-function addTask() {
-    var taskInput = document.getElementById("taskInput").value;
-    if (taskInput.trim() === "") {
-        alert("Please enter a task!");
-        return;
-    }
-
-    var taskCard = document.createElement("div");
-    taskCard.className = "task-card";
-    taskCard.id = "task" + Date.now(); // Unique ID for each task
-    taskCard.draggable = true;
-    taskCard.addEventListener("dragstart", drag);
-
-    taskCard.innerHTML = taskInput;
-
-    document.getElementById("todo-body").appendChild(taskCard);
-    document.getElementById("taskInput").value = ""; // Clear the input field
-}
-
-
-//Timesheet page functionality
-$(document).ready(function () {
-    // Timer functionality
-    let timer;
-    let startTime;
-    let isTimerRunning = false;
-
-    function startTimer() {
-        isTimerRunning = true;
-        startTime = new Date();
-        timer = setInterval(updateTimerDisplay, 1000);
-    }
-
-    function updateTimerDisplay() {
-        const currentTime = new Date();
-        const elapsedMilliseconds = currentTime - startTime;
-        const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
-
-        const hours = Math.floor(elapsedSeconds / 3600);
-        const minutes = Math.floor((elapsedSeconds % 3600) / 60);
-        const seconds = elapsedSeconds % 60;
-
-        const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
-        $('#timerDisplay').text(formattedTime);
-    }
-
-    function padZero(number) {
-        return (number < 10) ? `0${number}` : number;
-    }
-
-    // Task recording functionality
-    $('#recordTask').click(function () {
-        const taskDescription = $('#taskDescription').val();
-        const currentTime = getCurrentTime();
-
-        // Check if the timer is running before recording
-        if (isTimerRunning) {
-            stopTimer();
-        }
-
-        // Append a new row to the timesheet table
-        $('#timesheetBody').append(`
-            <tr>
-                <td>${getCurrentDate()}</td>
-                <td>${taskDescription}</td>
-                <td>${startTime.toLocaleTimeString()}</td>
-                <td>${currentTime}</td> <!-- Show stop time as well -->
-                <td>Started</td>
-                <td></td>
-                <td>
-                    <button class="btn btn-sm btn-danger">Delete</button>
-                </td>
-            </tr>
-        `);
-
-        // Clear the task description input
-        $('#taskDescription').val('');
-    });
-
-    function stopTimer() {
-        isTimerRunning = false;
-        clearInterval(timer);
-        $('#timerDisplay').text('00:00:00'); // Reset the timer display
-    }
-
-    // Start the timer when the "Start Timer" button is clicked
-    $('#startTimer').click(function () {
-        startTimer();
-    });
-
-    function getCurrentTime() {
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        const seconds = now.getSeconds();
-
-        return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
-    }
-
-    function getCurrentDate() {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = padZero(now.getMonth() + 1); // Months are 0-indexed
-        const day = padZero(now.getDate());
-
-        return `${year}-${month}-${day}`;
-    }
-});
-
 //Calendar Functionality
 //https://www.geeksforgeeks.org/how-to-create-a-dynamic-calendar-in-html-css-javascript/
 // Define an array to store events
@@ -188,34 +58,19 @@ function deleteEvent(eventId) {
  
 // Function to display reminders
 function displayReminders() {
-    reminderList.innerHTML = "";
-    for (let i = 0; i < events.length; i++) {
-        let event = events[i];
-        let eventDate = new Date(event.date);
-        if (eventDate.getMonth() ===
-            currentMonth &&
-            eventDate.getFullYear() ===
-            currentYear) {
-            let listItem = document.createElement("li");
-            listItem.innerHTML =
-                `<strong>${event.title}</strong> - 
-            ${event.description} on 
-            ${eventDate.toLocaleDateString()}`;
- 
-            // Add a delete button for each reminder item
-            let deleteButton =
-                document.createElement("button");
-            deleteButton.className = "delete-event";
-            deleteButton.textContent = "Delete";
-            deleteButton.onclick = function () {
-                deleteEvent(event.id);
-            };
- 
-            listItem.appendChild(deleteButton);
-            reminderList.appendChild(listItem);
-        }
+    // Check if the element with ID 'reminderList' exists
+    if ($('#reminderList').length) {
+        $.ajax({
+            url: 'php/get_reminders.php',
+            method: 'GET',
+            success: function (data) {
+                // Update the reminder list
+                $('#reminderList').html(data);
+            }
+        });
     }
 }
+
  
 // Function to generate a range of 
 // years for the year select input
@@ -399,6 +254,7 @@ showCalendar(currentMonth, currentYear);
 function openAddEventPopup() {
     var modal = document.getElementById("addEventModal");
     modal.style.display = "block";
+    displayReminders();
 }
 
 // Function to close the Add Event popup

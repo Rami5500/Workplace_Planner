@@ -219,12 +219,13 @@ session_start();
                 <div>
                     <label for="taskDescription">Task:</label>
                     <input type="text" id="taskDescription">
-                    
 
                     <button id="startTimer">Start Timer</button>
                     <span id="timerDisplay">00:00:00</span>
-                    <!-- <button id="stopTimer">Stop Timer</button> -->
                     <button id="recordTask">Record Task</button>
+
+                    <!-- Display record information dynamically -->
+                    <div id="recordInfo"></div>
                 </div>
 
                 <!-- Timesheet Display Section -->
@@ -301,7 +302,7 @@ session_start();
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="js/website.js"></script>
+    <script src="js/timesheet.js"></script>
 
 </body>
 

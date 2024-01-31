@@ -3,6 +3,7 @@
 
 <?php
 session_start();
+
 ?>
 
 <head>
@@ -272,22 +273,18 @@ session_start();
                             <h1>Dynamic Calendar</h1>
                             <div id="event-section">
                                 <h3>Add Event</h3>
-                                <input type="date" id="eventDate">
-                                <input type="text"
-                                    id="eventTitle"
-                                    placeholder="Event Title">
-                                <input type="text"
-                                    id="eventDescription"
-                                    placeholder="Event Description">
-                                <button id="addEvent" onclick="addEvent()">
-                                    Add
-                                </button>
+                                <form id="addEventForm" method="post" action="php/events.php">
+                                    <input type="date" name="eventDate" id="eventDate">
+                                    <input type="text" name="eventTitle" id="eventTitle" placeholder="Event Title">
+                                    <input type="text" name="eventDescription" id="eventDescription" placeholder="Event Description">
+                                    <button type="submit" name="addEvent" id="addEventButton" onclick="addEvent()">Add</button>
+                                </form> 
                             </div>
                             <div id="reminder-section">
                                 <h3>Reminders</h3>
-                                <!-- List to display reminders -->
                                 <ul id="reminderList">
-                                    <li data-event-id="1">
+                                    
+                                <!--    <li data-event-id="1">
                                         <strong>Event Title</strong>
                                         - Event Description on Event Date
                                         <button class="delete-event"
@@ -295,7 +292,9 @@ session_start();
                                             Delete
                                         </button>
                                     </li>
-                                </ul>
+                                </ul> -->
+
+
                             </div>
                         </div>
                     </div>
@@ -359,7 +358,7 @@ session_start();
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="js/website.js"></script>
+    <script src="js/calendar.js"></script>
 
 
 </body>

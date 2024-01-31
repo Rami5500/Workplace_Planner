@@ -300,7 +300,7 @@ session_start();
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="js/website.js"></script>
+    <script src="js/task_management.js"></script>
 
 
 </body>

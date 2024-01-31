@@ -12,7 +12,7 @@
 
 .kanban-header {
     padding: 10px;
-    background-color: #007bff;
+    background-color: #4e73df;
     color: #fff;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -179,9 +179,9 @@
 /* Buttons in the calendar */
 .button-container-calendar button {
     cursor: pointer;
-    background: #4e73df;
+    background: green;
     color: #fff;
-    border: 1px solid #4e73df;
+    border: 1px solid green;
     border-radius: 4px;
     padding: 5px 10px;
 }
@@ -224,7 +224,7 @@
  
 /* Hover effect for date cells */
 .date-picker:hover {
-    background-color: blue;
+    background-color: #4e73df;
     color: white;
     cursor: pointer;
 }
@@ -288,31 +288,31 @@
 
 /* Style for the modal */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .modal-content {
     background-color: #fefefe;
     margin: 10% auto;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #888;
-    width: 80%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Style for the close button */
 .close {
     color: #aaaaaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .close:hover,
@@ -320,62 +320,6 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
-}
-
-
-
-/* Centered content */
-.centered-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    
-
-/* Style for the Add Event button */
-#openAddEventPopup {
-    margin-top: 20px;
-    background: green;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-/* Modal styles (you can adjust as needed) */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
 }
 
 
@@ -386,7 +330,7 @@
     min-height: 100vh; 
 }
 
-/* Main Content */
+
 #content {
     flex: 1;
 }
