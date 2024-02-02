@@ -242,7 +242,9 @@ session_start();
                     <div class="task-form">
                         <input type="text" id="taskInput" placeholder="Add a new task...">
                         <button onclick="addTask()">Add Task</button>
+                        <input type="hidden" id="taskOrder" name="taskOrder">
                     </div>
+
 
                 </div>
                 <!-- /.container-fluid -->

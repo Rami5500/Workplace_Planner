@@ -334,3 +334,25 @@
 #content {
     flex: 1;
 }
+
+/* 
+.task-card {
+    position: relative;
+    padding-right: 30px;
+}
+
+.delete-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: red; 
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.delete-button:hover {
+    color: darkred; 
+} */
