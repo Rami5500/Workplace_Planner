@@ -16,10 +16,17 @@ $sql = "SELECT event_id, user_id, event_title, event_date, event_description FRO
 $result = mysqli_query($conn, $sql);
 
 // Fetch events and display them
+$events = array();
 while ($row = mysqli_fetch_assoc($result)) {
-    echo "<li data-event-id='{$row['event_id']}'>";
-    echo "<strong>{$row['event_title']}</strong> - {$row['event_description']} on {$row['event_date']}";
-    echo "<button class='delete-event' onclick='deleteEvent({$row['event_id']})'>Delete</button>";
-    echo "</li>";
+    $events[] = array(
+        'id' => $row['event_id'],
+        'date' => $row['event_date'],
+        'title' => $row['event_title'],
+        'description' => $row['event_description']
+    );
 }
+
+// Output events as JSON
+header('Content-Type: application/json');
+echo json_encode($events);
 ?>

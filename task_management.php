@@ -116,6 +116,9 @@ session_start();
                         <i class="fa fa-bars"></i>
                     </button>
 
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Task Management</h1>
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -212,9 +215,6 @@ session_start();
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Task Management</h1>
 
                     <!-- Kanban Board -->
                     <div class="kanban-container">

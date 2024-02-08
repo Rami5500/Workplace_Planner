@@ -118,6 +118,9 @@ session_start();
                         <i class="fa fa-bars"></i>
                     </button>
 
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Calendar</h1>
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -215,9 +218,6 @@ session_start();
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Calendar</h1>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -280,11 +280,11 @@ session_start();
                                     <button type="submit" name="addEvent" id="addEventButton" onclick="addEvent()">Add</button>
                                 </form> 
                             </div>
-                            <div id="reminder-section">
+                            <!-- <div id="reminder-section">
                                 <h3>Reminders</h3>
                                 <ul id="reminderList">
                                     
-                                <!--    <li data-event-id="1">
+                                 <li data-event-id="1">
                                         <strong>Event Title</strong>
                                         - Event Description on Event Date
                                         <button class="delete-event"
@@ -292,10 +292,10 @@ session_start();
                                             Delete
                                         </button>
                                     </li>
-                                </ul> -->
+                                </ul> 
 
 
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

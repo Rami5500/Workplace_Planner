@@ -222,12 +222,21 @@
     /* Friday */
 }
  
+.date-picker {
+    cursor: pointer;
+    position: relative;
+}
+
 /* Hover effect for date cells */
 .date-picker:hover {
     background-color: #4e73df;
     color: white;
-    cursor: pointer;
 }
+
+.date-picker:hover::after {
+    border: 1px solid #4e73df; /* Add border to prevent twitching */
+}
+
  
 /* Header for month and year */
 #monthAndYear {
@@ -356,3 +365,15 @@
 .delete-button:hover {
     color: darkred; 
 } */
+
+
+/* Style for the delete button in the calendar 
+.delete-event {
+    background: rgb(237, 19, 19);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+*/

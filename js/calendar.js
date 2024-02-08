@@ -17,13 +17,12 @@ let reminderList =
 let eventIdCounter = 1;
  
 // Function to add events
-function addEvent() {
+/* function addEvent() {
     let date = eventDateInput.value;
     let title = eventTitleInput.value;
     let description = eventDescriptionInput.value;
  
     if (date && title) {
-        // Create a unique event ID
         let eventId = eventIdCounter++;
  
         events.push(
@@ -39,37 +38,44 @@ function addEvent() {
         eventDescriptionInput.value = "";
         displayReminders();
     }
-}
+} */
  
 // Function to delete an event by ID
-function deleteEvent(eventId) {
+/* function deleteEvent(eventId) {
     // Find the index of the event with the given ID
-    let eventIndex =
-        events.findIndex((event) =>
-            event.id === eventId);
- 
+    let eventIndex = events.findIndex((event) => event.id === eventId);
+
     if (eventIndex !== -1) {
-        // Remove the event from the events array
-        events.splice(eventIndex, 1);
-        showCalendar(currentMonth, currentYear);
-        displayReminders();
-    }
-}
- 
-// Function to display reminders
-function displayReminders() {
-    // Check if the element with ID 'reminderList' exists
-    if ($('#reminderList').length) {
+        // AJAX call to delete the event from the database
         $.ajax({
-            url: 'php/get_reminders.php',
-            method: 'GET',
-            success: function (data) {
-                // Update the reminder list
-                $('#reminderList').html(data);
+            url: 'php/delete_event.php', // New PHP file for deleting events
+            method: 'POST',
+            data: { eventId: eventId },
+            success: function () {
+                // Removes the event from the events array
+                events.splice(eventIndex, 1);
+                showCalendar(currentMonth, currentYear);
+                displayReminders();
             }
         });
     }
+} */
+
+ 
+// Function to display reminders
+function displayReminders() {
+    $.ajax({
+        url: 'php/get_reminders.php',
+        method: 'GET',
+        success: function (data) {
+            // Update the global events array with data from the server
+            events = data;
+            // Display events on the calendar
+            showCalendar(currentMonth, currentYear);
+        }
+    });
 }
+
 
  
 // Function to generate a range of 
@@ -160,7 +166,7 @@ function showCalendar(month, year) {
     monthAndYear.innerHTML = months[month] + " " + year;
     selectYear.value = year;
     selectMonth.value = month;
- 
+
     let date = 1;
     for (let i = 0; i < 6; i++) {
         let row = document.createElement("tr");
@@ -179,8 +185,8 @@ function showCalendar(month, year) {
                 cell.setAttribute("data-year", year);
                 cell.setAttribute("data-month_name", months[month]);
                 cell.className = "date-picker";
-                cell.innerHTML = "<span>" + date + "</span";
- 
+                cell.innerHTML = "<span>" + date + "</span>";
+
                 if (
                     date === today.getDate() &&
                     year === today.getFullYear() &&
@@ -188,42 +194,61 @@ function showCalendar(month, year) {
                 ) {
                     cell.className = "date-picker selected";
                 }
- 
+
                 // Check if there are events on this date
-                if (hasEventOnDate(date, month, year)) {
+                let eventsOnDate = getEventsOnDate(date, month, year);
+                if (eventsOnDate.length > 0) {
                     cell.classList.add("event-marker");
-                    cell.appendChild(
-                        createEventTooltip(date, month, year)
-                 );
+                    cell.appendChild(createEventTooltip(date, month, year));
                 }
- 
+
                 row.appendChild(cell);
                 date++;
             }
         }
         tbl.appendChild(row);
     }
- 
+
     displayReminders();
 }
- 
+
 // Function to create an event tooltip
 function createEventTooltip(date, month, year) {
     let tooltip = document.createElement("div");
     tooltip.className = "event-tooltip";
     let eventsOnDate = getEventsOnDate(date, month, year);
-    for (let i = 0; i < eventsOnDate.length; i++) {
-        let event = eventsOnDate[i];
-        let eventDate = new Date(event.date);
-        let eventText = `<strong>${event.title}</strong> - 
-            ${event.description} on 
-            ${eventDate.toLocaleDateString()}`;
-        let eventElement = document.createElement("p");
-        eventElement.innerHTML = eventText;
-        tooltip.appendChild(eventElement);
+
+    if (eventsOnDate.length > 0) {
+        for (let i = 0; i < eventsOnDate.length; i++) {
+            let event = eventsOnDate[i];
+            let eventDate = new Date(event.date);
+            let eventText = `<strong>${event.title}</strong> - 
+                ${event.description} on 
+                ${eventDate.toLocaleDateString()}`;
+            let eventElement = document.createElement("p");
+            eventElement.innerHTML = eventText;
+
+            // Add delete button
+            /* let deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-event";
+            deleteButton.addEventListener("click", function () {
+                deleteEvent(event.id);
+            });
+
+            eventElement.appendChild(deleteButton); */
+            tooltip.appendChild(eventElement);
+        }
+    } else {
+        // Remove the "No events" message and leave tooltip empty if no events
+        tooltip.innerHTML = "";
     }
     return tooltip;
 }
+
+
+
+
  
 // Function to get events on a specific date
 function getEventsOnDate(date, month, year) {
@@ -254,7 +279,7 @@ showCalendar(currentMonth, currentYear);
 function openAddEventPopup() {
     var modal = document.getElementById("addEventModal");
     modal.style.display = "block";
-    displayReminders();
+    // Removed the displayReminders() call here as it's not needed.
 }
 
 // Function to close the Add Event popup
