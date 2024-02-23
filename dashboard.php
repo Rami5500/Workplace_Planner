@@ -288,7 +288,7 @@ session_start();
                     </div>
  
 
-                    <!-- Calendar Section -->
+                    <!-- Calendar Section
                     <div class="row">
                         <div class="col-lg-12">
                             <div id="reminder-section">
@@ -308,30 +308,7 @@ session_start();
 
                             </div>
                         </div>
-                    </div>
-
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Color System 
-                                Primary - #4e73df
-                                Success - #1cc88a</div>
-                                Info - #36b9cc</div>
-                                Warning - #f6c23e</div>
-                                Danger - #e74a3b</div>
-                                Secondary - #858796</div>
-                                Light - #f8f9fc</div>
-                                Dark - #5a5c69 
-                            -->
-
-                        </div>
-
-                        
-                    </div>
+                    </div> -->
 
                 </div>
                 <!-- /.container-fluid -->

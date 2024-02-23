@@ -64,19 +64,27 @@
                                             id="RepeatPassword" placeholder="Repeat Password">
                                     </div>
                                 </div>
+                                <!-- Add these fields for role and manager_id -->
+                                <div class="form-group">
+                                    <label for="role">Select Role:</label>
+                                    <select class="form-control" id="role" name="role">
+                                        <option value="employee">Employee</option>
+                                        <option value="manager">Manager</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="manager_id">Select Manager:</label>
+                                    <select class="form-control" id="manager_id" name="manager_id">
+                                        <!-- Populate this dropdown with managers from your database -->
+                                        <!-- Example: <option value="1">Manager 1</option> -->
+                                        <option value="1">Pete Langman</option>
+                                    </select>
+                                </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Register Account
                                 </button>
                                 
                                 <hr>
-                                <!--
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
-                                -->
                             </form>
                             <hr>
                             <div class="text-center">
