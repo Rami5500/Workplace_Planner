@@ -72,12 +72,16 @@
                                         <option value="manager">Manager</option>
                                     </select>
                                 </div>
+                                <!-- 
+                                    Managers can't register, account has to already be created.
+                                    Employee's can register and select their manager. 
+                                --> 
                                 <div class="form-group">
                                     <label for="manager_id">Select Manager:</label>
                                     <select class="form-control" id="manager_id" name="manager_id">
-                                        <!-- Populate this dropdown with managers from your database -->
+                                        <!-- Dropdown with managers from the database -->
                                         <!-- Example: <option value="1">Manager 1</option> -->
-                                        <option value="1">Pete Langman</option>
+                                        <option value="1">Manager Test</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">

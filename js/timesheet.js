@@ -106,20 +106,71 @@ $(document).ready(function () {
     
 
     // Fetch and display timesheets on page load
-    fetchTimesheets();
+    fetchTimesheets(isManager);
 
     // Function to fetch and display timesheets
-    function fetchTimesheets() {
+    function fetchTimesheets(isManager) {
+        if (isManager) {
+            fetchManagerTimesheets();
+        } else {
+            $.ajax({
+                url: 'php/fetch_timesheets.php',
+                type: 'GET',
+                success: function (response) {
+                    // Handle the response from the server
+                    $('#timesheetBody').html(response);
+                },
+                error: function (error) {
+                    console.error('Error fetching timesheets:', error);
+                }
+            });
+        }
+    }
+
+
+
+    // Function to fetch and display manager-specific timesheets
+    function fetchManagerTimesheets() {
         $.ajax({
-            url: 'php/fetch_timesheets.php',
+            url: 'php/fetch_manager_timesheets.php',
             type: 'GET',
+            dataType: 'json',
             success: function (response) {
                 // Handle the response from the server
-                $('#timesheetBody').html(response);
+                displayTimesheets(response);
             },
             error: function (error) {
-                console.error('Error fetching timesheets:', error);
+                console.error('Error fetching manager timesheets:', error);
             }
         });
     }
+
+    function displayTimesheets(timesheets) {
+        // Assuming timesheets is an array of timesheet objects
+        // Iterate through the timesheets and update the UI
+        const timesheetBody = $('#timesheetBody');
+    
+        // Clear existing content
+        timesheetBody.html('');
+    
+        timesheets.forEach(function (timesheet) {
+            // Append each timesheet entry to the table
+            timesheetBody.append(`
+                <tr>
+                    <td>${timesheet.date}</td>
+                    <td>${timesheet.task}</td>
+                    <td>${timesheet.time_from}</td>
+                    <td>${timesheet.time_to}</td>
+                    <td>${timesheet.status}</td>
+                    <td>${timesheet.hours}</td>
+                    <td>
+                        <button onclick="approveTimesheet(${timesheet.timesheet_id})">Approve</button>
+                        <button onclick="rejectTimesheet(${timesheet.timesheet_id})">Reject</button>
+                    </td>
+                </tr>
+            `);
+        });
+    }
+    
+
 });
