@@ -123,3 +123,27 @@ $(document).ready(function () {
         });
     }
 });
+
+// Add this click event handler for the "Reject" button
+$(document).on('click', '.delete-btn', function () {
+    const entryID = $(this).data('entry-id');
+
+    // Make an AJAX call to delete the entry
+    $.ajax({
+        url: 'php/delete_entry.php',
+        type: 'POST',
+        data: {
+            entryID: entryID
+        },
+        success: function (response) {
+            // Handle the response from the server
+            console.log(response);
+
+            // Fetch and display timesheets after deleting entry
+            fetchTimesheets();
+        },
+        error: function (error) {
+            console.error('Error deleting entry:', error);
+        }
+    });
+});

@@ -13,8 +13,7 @@ session_start();
     <meta name="description" content="My Final Year Project">
     <meta name="author" content="Rami Hassan">
 
-
-    <title>Workplace Planner - Task Management</title>
+    <title>Workplace Planner</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,7 +22,6 @@ session_start();
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/website.css" rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
@@ -76,16 +74,15 @@ session_start();
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <li class="nav-item active">
-                <a class="nav-link" href="task_management.php" aria-expanded="true">
+            <li class="nav-item">
+                <a class="nav-link" href="task_management.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Task Management</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Charts -->
+            
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -117,11 +114,35 @@ session_start();
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Task Management</h1>
+                    <!-- Topbar Search -->
+                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -174,9 +195,12 @@ session_start();
                             </div>
                         </li>
 
-                        
-
                         <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!--
+                        https://www.geeksforgeeks.org/how-to-display-logged-in-user-information-in-php/
+                        Used the above link to display the users name when they are logged in
+                        -->
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -217,35 +241,42 @@ session_start();
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Kanban Board -->
-                    <div class="kanban-container">
-                        <div class="kanban-column" id="todo-column">
-                            <div class="kanban-header">To-Do</div>
-                            <div class="kanban-body" id="todo-body" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                <!-- Tasks in To-Do list will be added here -->
-                            </div>
-                        </div>
-                        <div class="kanban-column" id="doing-column">
-                            <div class="kanban-header">Doing</div>
-                            <div class="kanban-body" id="doing-body" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                <!-- Tasks in Doing list will be added here -->
-                            </div>
-                        </div>
-                        <div class="kanban-column" id="done-column">
-                            <div class="kanban-header">Done</div>
-                            <div class="kanban-body" id="done-body" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                <!-- Tasks in Done list will be added here -->
-                            </div>
-                        </div>
-                    </div>
+                <!-- Timesheets Section -->
+                <h2>Employee Timesheets</h2>
 
-                    <!-- Task Input Form -->
-                    <div class="task-form">
-                        <input type="text" id="taskInput" placeholder="Add a new task...">
-                        <button onclick="addTask()">Add Task</button>
-                        <input type="hidden" id="taskOrder" name="taskOrder">
-                    </div>
+                <?php
+                // Assuming your database connection is established
+                include 'php/db_connection.php';
 
+                // Fetch timesheets for employees under the manager
+                $manager_id = $_SESSION['user_id'];
+
+                $timesheets_query = $conn->prepare("SELECT users.first_name, users.last_name, timesheets.* FROM users
+                                                    INNER JOIN timesheets ON users.user_id = timesheets.user_id
+                                                    WHERE users.manager_id = ?");
+                $timesheets_query->bind_param("i", $manager_id);
+                $timesheets_query->execute();
+                $timesheets_result = $timesheets_query->get_result();
+
+                if ($timesheets_result->num_rows > 0) {
+                    while ($row = $timesheets_result->fetch_assoc()) {
+                        // Calculate hours worked from time_from and time_to
+                        $time_from = new DateTime($row['time_from']);
+                        $time_to = new DateTime($row['time_to']);
+                        $hours_worked = $time_from->diff($time_to)->format('%H:%I:%S');
+
+                        // Display timesheet information
+                        echo "<p>{$row['first_name']} {$row['last_name']} - Timesheet Date: {$row['time_from']} to {$row['time_to']} Hours: {$hours_worked}";
+                        // Add a "Reject" button with a data-entry-id attribute
+                        echo " <button class='btn btn-danger delete-btn' data-entry-id='{$row['entry_id']}'>Reject</button></p>";
+
+                    }
+                } else {
+                    echo "<p>No timesheets available for employees.</p>";
+                }
+
+                $timesheets_query->close();
+                ?>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -303,8 +334,17 @@ session_start();
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="js/task_management.js"></script>
 
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+
+    <script src="js/calendar.js"></script>
+    <script src="js/task_management.js"></script>
+    <script src="js/timesheet.js"></script>
 
 </body>
 

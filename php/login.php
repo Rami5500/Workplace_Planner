@@ -1,7 +1,3 @@
-<!--https://codeshack.io/secure-login-system-php-mysql/
-https://www.geeksforgeeks.org/how-to-display-logged-in-user-information-in-php/
-Used the above links to help me with the login.php-->
-
 <?php
 // Include the database connection file
 include 'db_connection.php';
@@ -36,17 +32,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['first_name'] = $user['first_name'];
             $_SESSION['last_name'] = $user['last_name'];
+            $_SESSION['role'] = $user['role'];
 
             echo "Login successful! Welcome, " . $user['first_name'] . " " . $user['last_name'];
 
-            // Redirect to the dashboard or any other page
-            header("Location: /Workplace_Planner/dashboard.php");
+            // Redirect based on user role
+            if ($user['role'] == 'employee') {
+                header("Location: /Workplace_Planner/dashboard.php");
+            } elseif ($user['role'] == 'manager') {
+                header("Location: /Workplace_Planner/manager_dashboard.php");
+            }
+
             exit;
         } else {
             echo "Incorrect password.<br>";
         }
+
     } else {
-        echo "Incorrect password.<br>";
+        echo "User not found.<br>";
     }
 
     $stmt->close();

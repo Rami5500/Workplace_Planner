@@ -15,9 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $repeat_password = $_POST['repeat_password'];
+    $role = $_POST['role'];
+    $manager_id = $_POST['manager_id'];
 
     // Basic validation
-    if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($repeat_password)) {
+    if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($repeat_password) || empty($role) || empty($manager_id)) {
         echo "All fields are required.";
         exit;
     }
@@ -31,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Prepare and bind the statement with placeholders
-    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $first_name, $last_name, $email, $hashed_password);
+    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role, manager_id) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssi", $first_name, $last_name, $email, $hashed_password, $role, $manager_id);
 
     // Execute the statement
     if ($stmt->execute()) {
@@ -47,9 +49,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Close the statement
     $stmt->close();
-    
+
     // Redirect to login page or dashboard after successful registration
     header("Location: /Workplace_Planner/user_login.php");
     exit;
+
 }
 ?>

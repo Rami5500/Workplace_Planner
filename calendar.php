@@ -39,7 +39,7 @@ session_start();
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo ($_SESSION['role'] == 'manager') ? 'manager_dashboard.php' : 'dashboard.php'; ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -51,10 +51,12 @@ session_start();
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="dashboard.php">
+                <a class="nav-link" href="<?php echo ($_SESSION['role'] == 'manager') ? 'manager_dashboard.php' : 'dashboard.php'; ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">

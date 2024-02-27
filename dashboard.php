@@ -286,29 +286,6 @@ session_start();
                             </div>
                         </div>
                     </div>
- 
-
-                    <!-- Calendar Section -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div id="reminder-section">
-                                <h3>Reminders</h3>
-                                <ul id="reminderList">
-                                    
-                                 <li data-event-id="1">
-                                        <strong>Event Title</strong>
-                                        - Event Description on Event Date
-                                        <button class="delete-event"
-                                            onclick="deleteEvent(1)">
-                                            Delete
-                                        </button>
-                                    </li>
-                                </ul> 
-
-
-                            </div>
-                        </div>
-                    </div>
 
 
                     <!-- Content Row -->
