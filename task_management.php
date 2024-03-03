@@ -305,6 +305,9 @@ session_start();
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/task_management.js"></script>
 
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/ca9658ca-ea21-4fff-b4fd-45bc0ac3e8c4/webchat/config.js" defer></script>
+
 
 </body>
 

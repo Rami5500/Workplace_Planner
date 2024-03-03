@@ -64,7 +64,6 @@
                                             id="RepeatPassword" placeholder="Repeat Password">
                                     </div>
                                 </div>
-                                <!-- Add these fields for role and manager_id -->
                                 <div class="form-group">
                                     <label for="role">Select Role:</label>
                                     <select class="form-control" id="role" name="role">
@@ -81,6 +80,7 @@
                                     <select class="form-control" id="manager_id" name="manager_id">
                                         <!-- Dropdown with managers from the database -->
                                         <!-- Example: <option value="1">Manager 1</option> -->
+                                        <!-- The value is the user_id number -->
                                         <option value="1">Manager Test</option>
                                         <option value="4">Second Manager</option>
                                     </select>
