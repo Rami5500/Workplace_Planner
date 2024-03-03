@@ -240,14 +240,6 @@ session_start();
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> 
-                    </div>
-                    -->
-
                     <!-- Timesheet Section -->
                     <div class="row">
                         <!-- Timesheet Display Section -->
@@ -279,35 +271,12 @@ session_start();
                                 <div class="kanban-container">
                                     <div class="kanban-column" id="todo-column">
                                         <div class="kanban-body" id="todo-body">
-                                            <!-- Tasks in To-Do list will be added here -->
+                                            <!-- Tasks in To-Do list will be shown here -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Color System 
-                                Primary - #4e73df
-                                Success - #1cc88a</div>
-                                Info - #36b9cc</div>
-                                Warning - #f6c23e</div>
-                                Danger - #e74a3b</div>
-                                Secondary - #858796</div>
-                                Light - #f8f9fc</div>
-                                Dark - #5a5c69 
-                            -->
-
-                        </div>
-
-                        
                     </div>
 
                 </div>

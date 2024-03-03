@@ -282,22 +282,6 @@ session_start();
                                     <button type="submit" name="addEvent" id="addEventButton" onclick="addEvent()">Add</button>
                                 </form> 
                             </div>
-                            <!-- <div id="reminder-section">
-                                <h3>Reminders</h3>
-                                <ul id="reminderList">
-                                    
-                                 <li data-event-id="1">
-                                        <strong>Event Title</strong>
-                                        - Event Description on Event Date
-                                        <button class="delete-event"
-                                            onclick="deleteEvent(1)">
-                                            Delete
-                                        </button>
-                                    </li>
-                                </ul> 
-
-
-                            </div> -->
                         </div>
                     </div>
                 </div>

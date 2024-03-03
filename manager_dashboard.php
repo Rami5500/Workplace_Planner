@@ -35,6 +35,7 @@ session_start();
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
+            <!-- This will determine if an employee or a manager is signed in. This will then show the right web page. -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo ($_SESSION['role'] == 'manager') ? 'manager_dashboard.php' : 'dashboard.php'; ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
@@ -47,6 +48,7 @@ session_start();
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
+                <!-- This will determine if an employee or a manager is signed in. This will then show the right web page. -->
                 <a class="nav-link" href="<?php echo ($_SESSION['role'] == 'manager') ? 'manager_dashboard.php' : 'dashboard.php'; ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
@@ -245,12 +247,12 @@ session_start();
                 <h2>Employee Timesheets</h2>
 
                 <?php
-                // Assuming your database connection is established
                 include 'php/db_connection.php';
 
-                // Fetch timesheets for employees under the manager
+                // Fetches timesheets for employees under the manager
                 $manager_id = $_SESSION['user_id'];
 
+                //PHP to display the timesheets based on the employee under the manager.
                 $timesheets_query = $conn->prepare("SELECT users.first_name, users.last_name, timesheets.* FROM users
                                                     INNER JOIN timesheets ON users.user_id = timesheets.user_id
                                                     WHERE users.manager_id = ?");
@@ -260,18 +262,19 @@ session_start();
 
                 if ($timesheets_result->num_rows > 0) {
                     while ($row = $timesheets_result->fetch_assoc()) {
-                        // Calculate hours worked from time_from and time_to
+                        // Calculates hours worked from time_from and time_to
                         $time_from = new DateTime($row['time_from']);
                         $time_to = new DateTime($row['time_to']);
                         $hours_worked = $time_from->diff($time_to)->format('%H:%I:%S');
 
-                        // Display timesheet information
+                        // Displays timesheet information
                         echo "<p>{$row['first_name']} {$row['last_name']} - Timesheet Date: {$row['time_from']} to {$row['time_to']} Hours: {$hours_worked}";
-                        // Add a "Reject" button with a data-entry-id attribute
+                        // The reject button will remove the record of data from the table.
                         echo " <button class='btn btn-danger delete-btn' data-entry-id='{$row['entry_id']}'>Reject</button></p>";
 
                     }
                 } else {
+                    //If there are no timesheets, the following message will be displayed to the user.
                     echo "<p>No timesheets available for employees.</p>";
                 }
 

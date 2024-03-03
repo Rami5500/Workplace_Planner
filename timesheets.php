@@ -243,13 +243,11 @@ session_start();
                         </tr>
                     </thead>
                     <tbody id="timesheetBody">
-                        <!-- Timesheet entries will be displayed here -->
+                        <!-- Timesheet entries are displayed here -->
                     </tbody>
                 </table>
 
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 

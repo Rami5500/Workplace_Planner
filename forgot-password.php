@@ -50,7 +50,7 @@
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                        <a href="user_login.php" class="btn btn-primary btn-user btn-block">
                                             Reset Password
                                         </a>
                                     </form>

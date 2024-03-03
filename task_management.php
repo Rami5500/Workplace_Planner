@@ -182,6 +182,7 @@ session_start();
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- This will retrieve the users firstname from the table in the database -->
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['first_name']; ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
@@ -305,6 +306,7 @@ session_start();
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/task_management.js"></script>
 
+    <!-- Botpress scripts that would show the chatbot on the web application-->
     <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
     <script src="https://mediafiles.botpress.cloud/ca9658ca-ea21-4fff-b4fd-45bc0ac3e8c4/webchat/config.js" defer></script>
 
