@@ -1,5 +1,4 @@
 <?php
-// Include database connection
 include("db_connection.php");
 
 session_start();
@@ -10,12 +9,12 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Retrieve events for the logged-in user
+// Retrieves events for the logged-in user
 $userId = $_SESSION['user_id'];
 $sql = "SELECT event_id, user_id, event_title, event_date, event_description FROM events WHERE user_id = '$userId'";
 $result = mysqli_query($conn, $sql);
 
-// Fetch events and display them
+// Fetches events and displays them
 $events = array();
 while ($row = mysqli_fetch_assoc($result)) {
     $events[] = array(
@@ -26,7 +25,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     );
 }
 
-// Output events as JSON
+// Outputs events as JSON
 header('Content-Type: application/json');
 echo json_encode($events);
 ?>

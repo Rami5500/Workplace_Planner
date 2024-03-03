@@ -8,7 +8,7 @@ $(document).ready(function () {
         startTime = new Date();
         timer = setInterval(updateTimerDisplay, 1000);
 
-        // Display the initial record information
+        // Displays the initial record information
         displayRecordInfo('Recording...', startTime.toISOString(), 'N/A', 'N/A');
     }
 
@@ -39,7 +39,7 @@ $(document).ready(function () {
         clearInterval(timer);
         endTime = new Date();
 
-        // Display the complete record information
+        // Displays the complete record information
         displayRecordInfo(
             $('#taskDescription').val(),
             startTime.toISOString(),
@@ -47,7 +47,7 @@ $(document).ready(function () {
             $('#timerDisplay').text()
         );
 
-        // Send data to server (you may want to include the entryID if editing an existing task)
+        // Sends data to server (you may want to include the entryID if editing an existing task)
         $.ajax({
             url: 'php/record_task.php',
             type: 'POST',
@@ -59,7 +59,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response);
-                // Fetch and display timesheets after recording task
+                // Fetches and displays timesheets after recording task
                 fetchTimesheets();
             },
             error: function (error) {
@@ -73,7 +73,7 @@ $(document).ready(function () {
         // Format the date and time
         const formattedTimeFrom = new Date(timeFrom).toLocaleString();
         
-        // Update the UI with the provided information
+        // Updates the UI with the provided information
         $('#recordInfo').html(`
             <strong>Task:</strong> ${taskName} <br>
             <strong>Time From:</strong> ${formattedTimeFrom} <br>
@@ -84,7 +84,7 @@ $(document).ready(function () {
     $(document).on('click', '.delete-btn', function () {
         const entryID = $(this).data('entry-id');
     
-        // Make an AJAX call to delete the entry
+        // Makes an AJAX call to delete the entry
         $.ajax({
             url: 'php/delete_entry.php',
             type: 'POST',
@@ -92,10 +92,10 @@ $(document).ready(function () {
                 entryID: entryID
             },
             success: function (response) {
-                // Handle the response from the server
+                // Handles the response from the server
                 console.log(response);
     
-                // Fetch and display timesheets after deleting entry
+                // Fetches and displays timesheets after deleting entry
                 fetchTimesheets();
             },
             error: function (error) {
@@ -105,7 +105,7 @@ $(document).ready(function () {
     });
     
 
-    // Fetch and display timesheets on page load
+    // Fetches and displays timesheets on page load
     fetchTimesheets();
 
     // Function to fetch and display timesheets
@@ -114,7 +114,7 @@ $(document).ready(function () {
             url: 'php/fetch_timesheets.php',
             type: 'GET',
             success: function (response) {
-                // Handle the response from the server
+                // Handles the response from the server
                 $('#timesheetBody').html(response);
             },
             error: function (error) {
@@ -124,11 +124,10 @@ $(document).ready(function () {
     }
 });
 
-// Add this click event handler for the "Reject" button
 $(document).on('click', '.delete-btn', function () {
     const entryID = $(this).data('entry-id');
 
-    // Make an AJAX call to delete the entry
+    // Makes an AJAX call to delete the entry
     $.ajax({
         url: 'php/delete_entry.php',
         type: 'POST',
@@ -136,10 +135,10 @@ $(document).on('click', '.delete-btn', function () {
             entryID: entryID
         },
         success: function (response) {
-            // Handle the response from the server
+            // Handles the response from the server
             console.log(response);
 
-            // Fetch and display timesheets after deleting entry
+            // Fetches and displays timesheets after deleting entry
             fetchTimesheets();
         },
         error: function (error) {

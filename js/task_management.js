@@ -1,5 +1,3 @@
-// task_management.js
-
 // Task Management functionality
 function allowDrop(event) {
     event.preventDefault();
@@ -19,7 +17,7 @@ function drop(event) {
     if (dropTarget.classList.contains("kanban-body")) {
         dropTarget.appendChild(draggedElement);
 
-        // Update the task's list_name and save to the database
+        // Updates the task's list_name and save to the database
         var taskId = draggedElement.id.replace("task", "");
         var listName = dropTarget.id.replace("-body", "");
 
@@ -30,7 +28,7 @@ function drop(event) {
 function createTaskCard(task) {
     var taskCard = document.createElement("div");
     taskCard.className = "task-card";
-    taskCard.id = "task" + task.task_id; // Use the task_id as the unique ID
+    taskCard.id = "task" + task.task_id;
     taskCard.draggable = true;
     taskCard.addEventListener("dragstart", drag);
 
@@ -48,27 +46,27 @@ function createTaskCard(task) {
         deleteTask(task.task_id);
     });
 
-    // Apply styling to the task card and delete button
+    // Applys styling to the task card and delete button
     taskCard.style.position = "relative";
-    taskCard.style.paddingRight = "30px"; // Adjust the value as needed
+    taskCard.style.paddingRight = "30px";
 
     deleteButton.style.position = "absolute";
     deleteButton.style.top = "0";
     deleteButton.style.right = "0";
     deleteButton.style.cursor = "pointer";
     deleteButton.style.fontWeight = "bold";
-    deleteButton.style.color = "red"; // Change the color as desired
+    deleteButton.style.color = "red";
     deleteButton.style.background = "none";
     deleteButton.style.border = "none";
-    deleteButton.style.outline = "none"; // Remove the outline
+    deleteButton.style.outline = "none";
 
-    // Optional: Add a hover effect
+    // Hover effect
     deleteButton.addEventListener("mouseover", function () {
-        deleteButton.style.color = "darkred"; // Change the color on hover
+        deleteButton.style.color = "darkred";
     });
 
     deleteButton.addEventListener("mouseout", function () {
-        deleteButton.style.color = "red"; // Change back to the original color
+        deleteButton.style.color = "red";
     });
 
     taskCard.appendChild(deleteButton);
@@ -85,23 +83,23 @@ function addTask() {
     }
 
     var taskCard = createTaskCard({
-        task_id: Date.now(), // Generate a temporary ID for the client side
+        task_id: Date.now(), // Generates a temporary ID for the client side
         task_name: taskInput,
-        list_name: "todo" // Assuming new tasks are always added to the "todo" list
+        list_name: "todo" 
     });
 
     document.getElementById("todo-body").appendChild(taskCard);
-    document.getElementById("taskInput").value = ""; // Clear the input field
+    document.getElementById("taskInput").value = ""; // Clears the input field
 
-    // Save the task to the database
+    // Saves the task to the database
     saveTaskToDatabase(taskCard.id, taskInput);
 }
 
 function saveTaskToDatabase(taskId, taskName) {
-    // Use AJAX to save the task to the database
+    // Uses AJAX to save the task to the database
     $.ajax({
         type: "POST",
-        url: "php/save_task.php", // Replace with the actual server-side script
+        url: "php/save_task.php",
         data: { taskId: taskId, taskName: taskName },
         success: function (response) {
             console.log(response);
@@ -113,10 +111,10 @@ function saveTaskToDatabase(taskId, taskName) {
 }
 
 function updateTaskList(taskId, listName) {
-    // Use AJAX to update the task's list_name in the database
+    // Uses AJAX to update the task's list_name in the database
     $.ajax({
         type: "POST",
-        url: "php/update_task_list.php", // Replace with the actual server-side script
+        url: "php/update_task_list.php",
         data: { taskId: taskId, listName: listName },
         success: function (response) {
             console.log(response);
@@ -128,14 +126,14 @@ function updateTaskList(taskId, listName) {
 }
 
 function deleteTask(taskId) {
-    // Use AJAX to delete the task from the database
+    // Uses AJAX to delete the task from the database
     $.ajax({
         type: "POST",
         url: "php/delete_task.php",
         data: { taskId: taskId },
         success: function (response) {
             console.log(response);
-            // Remove the task from the UI
+            // Removes the task from the UI
             var taskElement = document.getElementById("task" + taskId);
             if (taskElement) {
                 taskElement.remove();
@@ -148,12 +146,12 @@ function deleteTask(taskId) {
 }
 
 function fetchAndDisplayTasks() {
-    // Use AJAX to fetch tasks from the server
+    // Uses AJAX to fetch tasks from the server
     $.ajax({
         type: "GET",
-        url: "php/fetch_tasks.php", // Replace with the actual server-side script
+        url: "php/fetch_tasks.php",
         success: function (tasks) {
-            // Process the fetched tasks and display them on the kanban board
+            // Processes the fetched tasks and display them on the kanban board
             displayTasksOnKanbanBoard(tasks);
         },
         error: function (error) {
@@ -164,10 +162,10 @@ function fetchAndDisplayTasks() {
 
 function displayTasksOnKanbanBoard(tasks) {
     tasks.forEach(function (task) {
-        // Create a task card element
+        // Creates a task card element
         var taskCard = createTaskCard(task);
 
-        // Append the task card to the appropriate Kanban column based on the list_name
+        // Appends the task card to the appropriate Kanban column based on the list_name
         var kanbanBody;
         switch (task.list_name) {
             case "todo":
@@ -180,7 +178,7 @@ function displayTasksOnKanbanBoard(tasks) {
                 kanbanBody = document.getElementById("done-body");
                 break;
             default:
-                // Handle unknown list names or provide a default column
+                // Handles unknown list names or provide a default column
                 break;
         }
 

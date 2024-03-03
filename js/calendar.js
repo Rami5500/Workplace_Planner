@@ -1,6 +1,6 @@
 //Calendar Functionality
 //https://www.geeksforgeeks.org/how-to-create-a-dynamic-calendar-in-html-css-javascript/
-// Define an array to store events
+// Defines an array to store events
 let events = [];
  
 // letiables to store event input fields and reminder list
@@ -13,7 +13,7 @@ let eventDescriptionInput =
 let reminderList =
     document.getElementById("reminderList");
  
-// Counter to generate unique event IDs
+// Counters to generate unique event IDs
 let eventIdCounter = 1;
  
 // Function to add events
@@ -70,7 +70,7 @@ function displayReminders() {
         success: function (data) {
             // Update the global events array with data from the server
             events = data;
-            // Display events on the calendar
+            // Displays events on the calendar
             showCalendar(currentMonth, currentYear);
         }
     });
@@ -89,7 +89,7 @@ function generate_year_range(start, end) {
     return years;
 }
  
-// Initialize date-related letiables
+// Initializes date-related letiables
 today = new Date();
 currentMonth = today.getMonth();
 currentYear = today.getFullYear();
@@ -195,7 +195,7 @@ function showCalendar(month, year) {
                     cell.className = "date-picker selected";
                 }
 
-                // Check if there are events on this date
+                // Checks if there are events on this date
                 let eventsOnDate = getEventsOnDate(date, month, year);
                 if (eventsOnDate.length > 0) {
                     cell.classList.add("event-marker");
@@ -228,7 +228,7 @@ function createEventTooltip(date, month, year) {
             let eventElement = document.createElement("p");
             eventElement.innerHTML = eventText;
 
-            // Add delete button
+            // Adds delete button
             /* let deleteButton = document.createElement("button");
             deleteButton.textContent = "Delete";
             deleteButton.className = "delete-event";
@@ -240,7 +240,6 @@ function createEventTooltip(date, month, year) {
             tooltip.appendChild(eventElement);
         }
     } else {
-        // Remove the "No events" message and leave tooltip empty if no events
         tooltip.innerHTML = "";
     }
     return tooltip;
@@ -272,14 +271,12 @@ function daysInMonth(iMonth, iYear) {
     return 32 - new Date(iYear, iMonth, 32).getDate();
 }
  
-// Call the showCalendar function initially to display the calendar
 showCalendar(currentMonth, currentYear);
 
 // Function to open the Add Event popup
 function openAddEventPopup() {
     var modal = document.getElementById("addEventModal");
     modal.style.display = "block";
-    // Removed the displayReminders() call here as it's not needed.
 }
 
 // Function to close the Add Event popup
