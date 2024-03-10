@@ -39,7 +39,6 @@ $(document).ready(function () {
         clearInterval(timer);
         endTime = new Date();
 
-        // Displays the complete record information
         displayRecordInfo(
             $('#taskDescription').val(),
             startTime.toISOString(),
@@ -47,7 +46,6 @@ $(document).ready(function () {
             $('#timerDisplay').text()
         );
 
-        // Sends data to server (you may want to include the entryID if editing an existing task)
         $.ajax({
             url: 'php/record_task.php',
             type: 'POST',
@@ -70,41 +68,47 @@ $(document).ready(function () {
 
     // Function to display record information dynamically
     function displayRecordInfo(taskName, timeFrom) {
-        // Format the date and time
         const formattedTimeFrom = new Date(timeFrom).toLocaleString();
         
-        // Updates the UI with the provided information
         $('#recordInfo').html(`
             <strong>Task:</strong> ${taskName} <br>
             <strong>Time From:</strong> ${formattedTimeFrom} <br>
         `);
     }
     
-
-    $(document).on('click', '.delete-btn', function () {
+    $(document).on('click', '.approve-btn', function () {
         const entryID = $(this).data('entry-id');
     
-        // Makes an AJAX call to delete the entry
+        updateStatus(entryID, 'Approved');
+    });
+    
+    $(document).on('click', '.reject-btn', function () {
+        const entryID = $(this).data('entry-id');
+    
+        updateStatus(entryID, 'Rejected');
+    });
+    
+    // Function to update status
+    function updateStatus(entryID, status) {
         $.ajax({
-            url: 'php/delete_entry.php',
+            url: 'php/update_status.php',
             type: 'POST',
             data: {
-                entryID: entryID
+                entryID: entryID,
+                status: status
             },
             success: function (response) {
-                // Handles the response from the server
                 console.log(response);
     
-                // Fetches and displays timesheets after deleting entry
+                // Fetches and displays timesheets after updating status
                 fetchTimesheets();
             },
             error: function (error) {
-                console.error('Error deleting entry:', error);
+                console.error('Error updating status:', error);
             }
         });
-    });
+    }
     
-
     // Fetches and displays timesheets on page load
     fetchTimesheets();
 

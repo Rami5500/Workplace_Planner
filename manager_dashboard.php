@@ -252,7 +252,7 @@ session_start();
                 // Fetches timesheets for employees under the manager
                 $manager_id = $_SESSION['user_id'];
 
-                //PHP to display the timesheets based on the employee under the manager.
+                // PHP to display the timesheets based on the employee under the manager.
                 $timesheets_query = $conn->prepare("SELECT users.first_name, users.last_name, timesheets.* FROM users
                                                     INNER JOIN timesheets ON users.user_id = timesheets.user_id
                                                     WHERE users.manager_id = ?");
@@ -268,13 +268,24 @@ session_start();
                         $hours_worked = $time_from->diff($time_to)->format('%H:%I:%S');
 
                         // Displays timesheet information
+                        echo "<div class='timesheet-entry'>";
                         echo "<p>{$row['first_name']} {$row['last_name']} - Timesheet Date: {$row['time_from']} to {$row['time_to']} Hours: {$hours_worked}";
-                        // The reject button will remove the record of data from the table.
-                        echo " <button class='btn btn-danger delete-btn' data-entry-id='{$row['entry_id']}'>Reject</button></p>";
+                        echo "<br>Status: {$row['status']}";
+
+                        // Approval and reject buttons
+                        if ($row['status'] == 'recorded') {
+                            echo "<br>";
+                            echo "<button class='btn btn-success approve-btn' data-entry-id='{$row['entry_id']}'>Approve</button>";
+                            echo " <button class='btn btn-danger reject-btn' data-entry-id='{$row['entry_id']}'>Reject</button>";
+                        } else {
+                            echo "<br><span class='badge badge-secondary'>Already {$row['status']}</span>";
+                        }
+                        echo "</p>";
+                        echo "</div>";
 
                     }
                 } else {
-                    //If there are no timesheets, the following message will be displayed to the user.
+                    // If there are no timesheets, the following message will be displayed to the user.
                     echo "<p>No timesheets available for employees.</p>";
                 }
 
