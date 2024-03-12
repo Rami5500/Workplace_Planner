@@ -12,7 +12,7 @@ require_once("db_connection.php");
 $userId = $_SESSION["user_id"];
 
 // Fetches tasks for the user from the database
-$sql = "SELECT task_id, task_name, list_name FROM tasks WHERE user_id = ?";
+$sql = "SELECT task_id, task_name, list_name, created_at FROM tasks WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $userId);
 $stmt->execute();
@@ -31,4 +31,3 @@ $conn->close();
 // Returns tasks as JSON
 header('Content-Type: application/json');
 echo json_encode($tasks);
-?>

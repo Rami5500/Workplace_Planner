@@ -38,6 +38,17 @@ function createTaskCard(task) {
     taskName.textContent = task.task_name;
     taskCard.appendChild(taskName);
 
+    // Date and time
+    var taskDateTime = document.createElement("span");
+    taskDateTime.className = "task-datetime";
+    taskDateTime.textContent = formatDateTime(task.created_at);
+
+    // Add a line break
+    taskCard.appendChild(document.createElement("br"));
+
+    // Append the date and time
+    taskCard.appendChild(taskDateTime);
+
     // Delete button (X)
     var deleteButton = document.createElement("button");
     deleteButton.innerHTML = "X";
@@ -46,7 +57,7 @@ function createTaskCard(task) {
         deleteTask(task.task_id);
     });
 
-    // Applys styling to the task card and delete button
+    // Apply styling to the task card and delete button
     taskCard.style.position = "relative";
     taskCard.style.paddingRight = "30px";
 
@@ -72,6 +83,21 @@ function createTaskCard(task) {
     taskCard.appendChild(deleteButton);
 
     return taskCard;
+}
+
+
+
+function formatDateTime(timestamp) {
+    var options = {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+    };
+
+    // Adjust the timestamp format according to your needs
+    return new Date(timestamp).toLocaleDateString("en-US", options);
 }
 
 
