@@ -33,7 +33,7 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-5 d-none d-lg-block bg-register-image" style="background-image: url('register_image.jpg'); background-size: cover;"></div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
@@ -91,7 +91,7 @@
                                 
                             </form>
                             <hr>
-                            
+
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.php">Forgot Password?</a>
                             </div> -->
