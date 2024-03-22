@@ -4,6 +4,7 @@ $(document).ready(function () {
     let endTime;
     let entryIDFromServer;
 
+    // https://www.w3schools.com/js/js_timing.asp
     function startTimer() {
         startTime = new Date();
         timer = setInterval(updateTimerDisplay, 1000);
@@ -45,7 +46,8 @@ $(document).ready(function () {
             endTime.toISOString(),
             $('#timerDisplay').text()
         );
-
+        
+        // https://stackoverflow.com/questions/15958738/how-do-i-do-an-ajax-call-to-a-database-using-javascript-a-url-and-a-key
         $.ajax({
             url: 'php/record_task.php',
             type: 'POST',
@@ -88,6 +90,7 @@ $(document).ready(function () {
         updateStatus(entryID, 'Rejected');
     });
     
+    // https://stackoverflow.com/questions/20404407/ajax-update-mysql-database-using-function-called-from-html-generated-from-php
     // Function to update status
     function updateStatus(entryID, status) {
         $.ajax({
@@ -112,6 +115,7 @@ $(document).ready(function () {
     // Fetches and displays timesheets on page load
     fetchTimesheets();
 
+    // https://stackoverflow.com/questions/39393885/jquery-ajax-get-post-to-a-javascript-file
     // Function to fetch and display timesheets
     function fetchTimesheets() {
         $.ajax({
@@ -131,6 +135,7 @@ $(document).ready(function () {
 $(document).on('click', '.delete-btn', function () {
     const entryID = $(this).data('entry-id');
 
+    // https://stackoverflow.com/questions/19446029/how-to-delete-record-using-ajax
     // Makes an AJAX call to delete the entry
     $.ajax({
         url: 'php/delete_entry.php',

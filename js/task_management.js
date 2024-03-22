@@ -43,13 +43,13 @@ function createTaskCard(task) {
     taskDateTime.className = "task-datetime";
     taskDateTime.textContent = formatDateTime(task.created_at);
 
-    // Add a line break
+    // Adds a line break
     taskCard.appendChild(document.createElement("br"));
 
-    // Append the date and time
+    // Appends the date and time
     taskCard.appendChild(taskDateTime);
 
-    // Delete button (X)
+    // Delete button is added using "X"
     var deleteButton = document.createElement("button");
     deleteButton.innerHTML = "X";
     deleteButton.className = "delete-button";
@@ -96,8 +96,8 @@ function formatDateTime(timestamp) {
         minute: "numeric",
     };
 
-    // Adjust the timestamp format according to your needs
-    return new Date(timestamp).toLocaleDateString("en-US", options);
+
+    return new Date(timestamp).toLocaleDateString("en-UK", options);
 }
 
 
@@ -121,6 +121,8 @@ function addTask() {
     saveTaskToDatabase(taskCard.id, taskInput);
 }
 
+// https://stackoverflow.com/questions/15958738/how-do-i-do-an-ajax-call-to-a-database-using-javascript-a-url-and-a-key
+
 function saveTaskToDatabase(taskId, taskName) {
     // Uses AJAX to save the task to the database
     $.ajax({
@@ -136,6 +138,7 @@ function saveTaskToDatabase(taskId, taskName) {
     });
 }
 
+// https://stackoverflow.com/questions/20404407/ajax-update-mysql-database-using-function-called-from-html-generated-from-php
 function updateTaskList(taskId, listName) {
     // Uses AJAX to update the task's list_name in the database
     $.ajax({
@@ -151,6 +154,7 @@ function updateTaskList(taskId, listName) {
     });
 }
 
+//https://stackoverflow.com/questions/19446029/how-to-delete-record-using-ajax
 function deleteTask(taskId) {
     // Uses AJAX to delete the task from the database
     $.ajax({
@@ -171,6 +175,8 @@ function deleteTask(taskId) {
     });
 }
 
+// https://stackoverflow.com/questions/24253454/request-data-from-server-using-ajax-and-jquery
+// https://stackoverflow.com/questions/39393885/jquery-ajax-get-post-to-a-javascript-file
 function fetchAndDisplayTasks() {
     // Uses AJAX to fetch tasks from the server
     $.ajax({

@@ -5,6 +5,7 @@ include 'db_connection.php';
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
+    // https://www.w3schools.com/php/php_mysql_select_where.asp
     // Fetches timesheets for the current user
     $fetchQuery = "SELECT * FROM timesheets WHERE user_id = $user_id";
     $result = $conn->query($fetchQuery);

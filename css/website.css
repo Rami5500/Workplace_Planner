@@ -1,3 +1,4 @@
+/* Task management CSS */
 .kanban-container {
     display: flex;
 }
@@ -344,36 +345,3 @@
     flex: 1;
 }
 
-/* 
-.task-card {
-    position: relative;
-    padding-right: 30px;
-}
-
-.delete-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-    font-weight: bold;
-    color: red; 
-    background: none;
-    border: none;
-    outline: none;
-}
-
-.delete-button:hover {
-    color: darkred; 
-} */
-
-
-/* Style for the delete button in the calendar 
-.delete-event {
-    background: rgb(237, 19, 19);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-left: 10px;
-}
-*/

@@ -16,52 +16,6 @@ let reminderList =
 // Counters to generate unique event IDs
 let eventIdCounter = 1;
  
-// Function to add events
-/* function addEvent() {
-    let date = eventDateInput.value;
-    let title = eventTitleInput.value;
-    let description = eventDescriptionInput.value;
- 
-    if (date && title) {
-        let eventId = eventIdCounter++;
- 
-        events.push(
-            {
-                id: eventId, date: date,
-                title: title,
-                description: description
-            }
-        );
-        showCalendar(currentMonth, currentYear);
-        eventDateInput.value = "";
-        eventTitleInput.value = "";
-        eventDescriptionInput.value = "";
-        displayReminders();
-    }
-} */
- 
-// Function to delete an event by ID
-/* function deleteEvent(eventId) {
-    // Find the index of the event with the given ID
-    let eventIndex = events.findIndex((event) => event.id === eventId);
-
-    if (eventIndex !== -1) {
-        // AJAX call to delete the event from the database
-        $.ajax({
-            url: 'php/delete_event.php', // New PHP file for deleting events
-            method: 'POST',
-            data: { eventId: eventId },
-            success: function () {
-                // Removes the event from the events array
-                events.splice(eventIndex, 1);
-                showCalendar(currentMonth, currentYear);
-                displayReminders();
-            }
-        });
-    }
-} */
-
- 
 // Function to display reminders
 function displayReminders() {
     $.ajax({

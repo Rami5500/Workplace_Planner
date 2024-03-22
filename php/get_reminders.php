@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+// https://www.w3schools.com/php/php_mysql_select_where.asp
 // Retrieves events for the logged-in user
 $userId = $_SESSION['user_id'];
 $sql = "SELECT event_id, user_id, event_title, event_date, event_description FROM events WHERE user_id = '$userId'";

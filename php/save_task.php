@@ -13,6 +13,7 @@ $userId = $_SESSION["user_id"];
 $taskId = $_POST["taskId"];
 $taskName = $_POST["taskName"];
 
+// https://www.w3schools.com/php/php_mysql_insert.asp
 // Saves the task to the database with creation date and time
 $sql = "INSERT INTO tasks (user_id, task_name, list_name, created_at) VALUES (?, ?, 'todo', NOW())";
 $stmt = $conn->prepare($sql);

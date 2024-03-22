@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $time_from = $_POST['timeFrom'];
     $time_to = $_POST['timeTo']; 
 
+    // https://www.w3schools.com/php/php_mysql_insert.asp
     // New record is inserted with provided start and end times
     $insertQuery = "INSERT INTO timesheets (user_id, task_name, time_from, time_to, status, hours) VALUES ($user_id, '$task_description', '$time_from', '$time_to', 'recorded', '$duration')";
 

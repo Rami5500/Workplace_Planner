@@ -31,6 +31,7 @@ session_start();
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+        <!-- https://www.w3schools.com/howto/howto_js_sidenav.asp -->
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -41,20 +42,16 @@ session_start();
                 </div>
                 <div class="sidebar-brand-text mx-3">Workplace Planner </div>
             </a>
-
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="dashboard.php" aria-expanded="true">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-
             <li class="nav-item">
                 <a class="nav-link" href="calendar.php">
                     <i class="fas fa-fw fa-chart-area"></i>

@@ -13,6 +13,7 @@ $userId = $_SESSION["user_id"];
 $taskId = $_POST["taskId"];
 $listName = $_POST["listName"];
 
+// https://www.w3schools.com/php/php_mysql_update.asp
 // Updates the task's list_name in the database
 $sql = "UPDATE tasks SET list_name = ? WHERE task_id = ? AND user_id = ?";
 $stmt = $conn->prepare($sql);

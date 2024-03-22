@@ -12,6 +12,7 @@ require_once("db_connection.php");
 $userId = $_SESSION["user_id"];
 $taskId = $_POST["taskId"];
 
+// https://www.w3schools.com/php/php_mysql_delete.asp
 // Deletes the task from the database
 $sql = "DELETE FROM tasks WHERE task_id = ? AND user_id = ?";
 $stmt = $conn->prepare($sql);

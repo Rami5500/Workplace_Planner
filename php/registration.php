@@ -31,7 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // The password is hashed securely
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Prepares and bind the statement with placeholders
+    // https://www.w3schools.com/php/php_mysql_insert.asp
+    // Prepares and binds the statement with placeholders
     $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role, manager_id) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssi", $first_name, $last_name, $email, $hashed_password, $role, $manager_id);
 

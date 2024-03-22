@@ -11,6 +11,7 @@ require_once("db_connection.php");
 
 $userId = $_SESSION["user_id"];
 
+// https://www.w3schools.com/php/php_mysql_select_where.asp
 // Fetches tasks for the user from the database
 $sql = "SELECT task_id, task_name, list_name, created_at FROM tasks WHERE user_id = ?";
 $stmt = $conn->prepare($sql);

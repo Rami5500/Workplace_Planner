@@ -1,6 +1,6 @@
 <?php
 include("db_connection.php");
-
+// https://www.w3schools.com/php/php_sessions.asp
 session_start();
 
 // Checks if the user is logged in
@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addEvent'])) {
     $eventDescription = $_POST['eventDescription'];
     $userId = $_SESSION['user_id'];
 
+    // https://www.w3schools.com/php/php_mysql_insert.asp
     // Inserts event into the database
     $sql = "INSERT INTO events (user_id, event_title, event_date, event_description) 
             VALUES ('$userId', '$eventTitle', '$eventDate', '$eventDescription')";

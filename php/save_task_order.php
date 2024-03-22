@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "Task order updated successfully!";
 }
 
+// https://www.w3schools.com/php/php_switch.asp
 function getListName($index) {
     // Determines the list name based on the index
     switch ($index) {
@@ -37,6 +38,7 @@ function getListName($index) {
 }
 
 function updateTaskOrder($userId, $taskId, $listName, $order) {
+    // https://www.w3schools.com/php/php_mysql_update.asp
     // Updates the database with the new task order
     global $conn;
     $stmt = $conn->prepare("UPDATE tasks SET list_name=?, list_order=? WHERE user_id=? AND task_id=?");
