@@ -235,8 +235,7 @@
 }
 
 .date-picker:hover::after {
-    border: 1px solid #4e73df; /* Add border to prevent twitching */
-}
+    border: 1px solid #4e73df; 
 
  
 /* Header for month and year */
