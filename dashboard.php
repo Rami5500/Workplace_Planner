@@ -30,7 +30,7 @@ session_start();
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
+        
         <!-- https://www.w3schools.com/howto/howto_js_sidenav.asp -->
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
